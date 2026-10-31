@@ -3,6 +3,7 @@
 # 사용법: 과제 폴더에서  bash /tmp/cofa-kit-ccmct/setup.sh   (또는 bash setup.sh [과제 폴더])
 #   - 지침 AGENTS.md 를 과제 폴더에 둔다 (과제 폴더에 이미 다른 AGENTS.md 가 있으면 건드리지 않고 알려 준다)
 #   - 스킬을 과제 폴더의 cofa-skills/ 에 복사한다 (이미 있는 파일은 덮어쓰지 않는다)
+#   - RUNBOOK, PLAYBOOK, PROMPTS 를 과제 폴더의 cofa-guide/ 에 복사한다 (편집기에서 보기 위해)
 #   - 과제 폴더에 WORKLOG.md 가 없으면 만든다 (있으면 건드리지 않는다)
 # 홈 폴더의 전역 설정(~/.codex, ~/.agents)은 건드리지 않는다. 환경에 따라 쓰기가 막혀 있을 수 있고,
 # 과제 폴더에 두어야 내가 AI에 준 지침이 작업물과 함께 남는다.
@@ -46,6 +47,18 @@ for d in "$KIT"/skills/*/; do
   fi
 done
 
+# 2-1) 시험 중 볼 안내 (편집기에서 열어 보기 위해)
+mkdir -p "$WORK/cofa-guide" || FAIL=1
+for f in RUNBOOK.md PLAYBOOK.md PROMPTS.md; do
+  if [ -e "$WORK/cofa-guide/$f" ]; then
+    echo "[2/3] 안내 $f 이미 있음, 건너뜀"
+  elif cp "$KIT/$f" "$WORK/cofa-guide/$f"; then
+    echo "[2/3] 안내 복사: cofa-guide/$f"
+  else
+    echo "[2/3] 실패: 안내 $f 복사"; FAIL=1
+  fi
+done
+
 # 3) 작업 기록
 if [ -e "$WORK/WORKLOG.md" ]; then
   echo "[3/3] WORKLOG.md 이미 있음, 건너뜀"
@@ -68,4 +81,5 @@ fi
 [ "$CONFLICT" -ne 0 ] && exit 1
 echo "완료. 과제 폴더: $WORK"
 echo "새 터미널 탭에서는 먼저  cd \"$WORK\"  를 하고 codex 를 켜세요. 이미 켜 둔 Codex가 있으면 /quit 후 다시 켭니다."
+echo "시험 중에는 편집기에서 cofa-guide/RUNBOOK.md 를 열어 두세요."
 echo "확인: Codex에게 '지금 적용된 지침을 3줄로 요약하고, cofa-skills 목록을 말해줘' 라고 물어보면 됩니다."
