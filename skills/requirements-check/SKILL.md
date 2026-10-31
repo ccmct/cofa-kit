@@ -7,8 +7,9 @@ description: 새 과제를 시작할 때, 또는 담당자가 새 요구사항�
 
 코드를 쓰기 전에 아래 순서대로 한다.
 
-0. **시작 점검**: 아래를 한 번에 실행하고 결과를 WORKLOG "환경"에 적는다. AGENTS.md 6번의 A/B/C 중 무엇인지 말한다.
+0. **시작 점검**: 아래를 한 번에 실행하고 결과를 WORKLOG "환경"에 적는다. 과제 폴더 경로(`pwd`)도 적는다. AGENTS.md 6번의 A/B/C 중 무엇인지 말한다.
    ```
+   pwd
    python3 --version
    python3 -c "import flask; print('flask', flask.__version__)"
    python3 -m pytest --version

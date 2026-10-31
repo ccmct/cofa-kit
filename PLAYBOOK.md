@@ -4,8 +4,15 @@
 여기에는 판단이 필요하거나 막혔을 때 바로 찾아볼 것만 둔다.
 
 ## 1. 시작 루틴
+**과제 폴더 찾기** (과제 README.md가 들어 있는 폴더가 과제 폴더다)
 ```
-ls                     # 과제 README.md가 여기 있는지 확인. 없으면 그 폴더로 cd
+pwd                    # 지금 있는 폴더의 경로
+ls                     # 여기에 README.md가 보이면 이곳이 과제 폴더
+```
+- README.md가 안 보이면 웹 IDE 왼쪽 파일 목록에서 README.md가 있는 폴더 이름을 보고 `cd [그 폴더]`. 그래도 모르겠으면 `find ~ -maxdepth 3 -name README.md`로 찾는다.
+- 찾았으면 `pwd`로 나온 경로를 **기억해 둔다** (setup.sh가 끝날 때도 경로를 알려 주고, WORKLOG "환경"에도 적힌다).
+- **새 터미널 탭을 열 때마다** 먼저 `pwd`와 `ls`로 README.md를 확인한다. 아니면 `cd [과제 폴더 경로]`.
+```
 git clone https://github.com/ccmct/cofa-kit.git /tmp/cofa-kit-ccmct   # 원본은 과제 폴더 밖에, 겹치지 않는 이름으로
 bash /tmp/cofa-kit-ccmct/setup.sh   # 과제 폴더에 AGENTS.md, cofa-skills/, WORKLOG.md 를 만든다
 codex                  # 반드시 과제 README가 있는 폴더에서 켠다
@@ -86,6 +93,9 @@ git이 없으면 `curl -L https://github.com/ccmct/cofa-kit/archive/refs/heads/m
 | 3 | **점검 창** Codex. 읽기 전용(P0). 작업 창이 하는 일을 지적만 한다 |
 | 4 | 내 확인용 (`cat`, `grep`, 테스트 실행, `git log`) |
 
+- **모든 탭은 과제 폴더에서 시작한다.** 새 탭은 다른 폴더에서 열릴 수 있다. `pwd`, `ls`로 README.md를 확인하고 아니면 `cd [과제 폴더 경로]`.
+- **Codex는 켜진 폴더의 AGENTS.md를 읽는다.** 과제 폴더에서 켜야 탭 1과 탭 3이 같은 지침을 쓴다. 다른 폴더에서 켜면 지침이 적용되지 않는다.
+- 두 번째 Codex(탭 3)는 탭 1의 대화를 모른다. 파일(README, 코드, WORKLOG)만 보고 판단하므로 담당자 답과 결정을 WORKLOG에 바로 적어 둔다.
 - 점검 창의 지적은 **내가 읽고 골라서** 작업 창에 전달한다. 두 창이 서로 직접 고치게 하지 않는다.
 - **추론 레벨**: 기본은 Medium. 계획을 세울 때와 막힌 버그에만 High를 쓴다.
 - **승인**: 파일 수정, 패키지 설치, 서버 실행, `curl`, 테스트는 내용을 읽고 허용한다. `git push`, 원격 추가, 제공 파일 삭제, 대량 삭제는 거절한다. 모르는 명령이면 "이 명령이 뭘 하는지 한 줄로"라고 묻고 정한다.

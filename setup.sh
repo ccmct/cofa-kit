@@ -66,5 +66,6 @@ if [ "$FAIL" -ne 0 ]; then
   exit 1
 fi
 [ "$CONFLICT" -ne 0 ] && exit 1
-echo "완료. 이미 켜 둔 Codex가 있으면 /quit 으로 끄고, 이 폴더에서 다시 codex 를 실행하세요."
+echo "완료. 과제 폴더: $WORK"
+echo "새 터미널 탭에서는 먼저  cd \"$WORK\"  를 하고 codex 를 켜세요. 이미 켜 둔 Codex가 있으면 /quit 후 다시 켭니다."
 echo "확인: Codex에게 '지금 적용된 지침을 3줄로 요약하고, cofa-skills 목록을 말해줘' 라고 물어보면 됩니다."
